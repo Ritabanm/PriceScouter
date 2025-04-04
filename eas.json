@@ -1,0 +1,18 @@
+{
+  "cli": {
+    "version": ">= 3.18.0"
+  },
+  "build": {
+    "production": {
+      "developmentClient": false,
+      "distribution": "store",
+      "env": {
+        "EXPO_NO_PREBUILD": "true"
+      },
+      "node": "18.18.2"
+    }
+  },
+  "submit": {
+    "production": {}
+  }
+}

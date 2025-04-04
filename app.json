@@ -1,0 +1,29 @@
+{
+  "expo": {
+    "name": "PriceScouter",
+    "slug": "PriceScouter",
+    "version": "1.0.0",
+    "orientation": "portrait",
+    "icon": "./icon.png",
+    "splash": {
+      "image": "./splash.png",
+      "resizeMode": "contain",
+      "backgroundColor": "#121212"
+    },
+    "assetBundlePatterns": [
+      "**/*",
+      "assets/models/price_model/*"
+    ],
+    "ios": {
+      "bundleIdentifier": "com.duotlabs.pricescouter"
+    },
+    "android": {
+      "package": "com.duotlabs.pricescouter"
+    },
+    "extra": {
+      "eas": {
+        "projectId": "5bbd8153-b1f4-44cd-b41e-8d0885de49ec"
+      }
+    }
+  }
+}

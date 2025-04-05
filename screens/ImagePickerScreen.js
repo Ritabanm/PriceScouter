@@ -11,7 +11,8 @@ import {
 } from 'react-native';
 import Slider from '@react-native-community/slider';
 import * as ImagePicker from 'expo-image-picker';
-import { loadModel, classifyImage, predictPrice } from '../helpers/tensorflowHelper';
+import { loadModel, classifyImage } from '../helpers/tensorflowHelper';
+import { predictPrice } from '../helpers/pricingEngine'; // Import the updated pricing logic
 
 export default function ImagePickerScreen() {
   const [imageUri, setImageUri] = useState(null);
@@ -28,16 +29,16 @@ export default function ImagePickerScreen() {
   useEffect(() => {
     (async () => {
       setLoading(true);
-      setModelMessage('🔄 Loading models...');
+      setModelMessage('🔄 Loading model...');
       try {
         await loadModel();
         setModelsReady(true);
-        setModelMessage('✅ Models loaded!');
+        setModelMessage('✅ Model loaded!');
         setTimeout(() => setModelMessage(''), 3000);
       } catch (err) {
-        console.error('❌ Error loading models:', err);
-        setModelMessage('❌ Failed to load models.');
-        Alert.alert('Failed to load ML models.');
+        console.error('❌ Error loading model:', err);
+        setModelMessage('❌ Failed to load model.');
+        Alert.alert('Failed to load MobileNet.');
       } finally {
         setLoading(false);
       }
@@ -46,7 +47,7 @@ export default function ImagePickerScreen() {
 
   const handleImageSelected = async (uri) => {
     if (!modelsReady) {
-      Alert.alert('Models not ready yet');
+      Alert.alert('Model not ready yet');
       return;
     }
 
@@ -57,8 +58,8 @@ export default function ImagePickerScreen() {
     setModelMessage('🔍 Analyzing image...');
 
     try {
-      const label = await classifyImage(uri);
-      setDetectedLabel(label || 'other');
+      const result = await classifyImage(uri);
+      setDetectedLabel(result.className || 'other');
     } catch (err) {
       console.error('❌ classifyImage error:', err);
       setDetectedLabel('other');
@@ -111,7 +112,6 @@ export default function ImagePickerScreen() {
     }
 
     const result = predictPrice({ label: detectedLabel, condition, age, warranty });
-
     if (result) {
       setPredictedPrice(result.price);
       setUsedDefaultPrice(result.usedDefault);
@@ -135,7 +135,6 @@ export default function ImagePickerScreen() {
       {!loading && detectedLabel !== '' && (
         <Text style={styles.info}>🧠 Detected: {detectedLabel}</Text>
       )}
-
       {predictedPrice && (
         <Text style={styles.predictedText}>
           💰 Estimated Price: ${predictedPrice}

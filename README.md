@@ -15,4 +15,4 @@ PriceScouter is a cross-platform mobile app built with react native and a whole 
   * Fine-tuned image classifier for identifying and evaluating pricing based on brands.
   * Improved coverage for more common product categories (currently only supports electronics).
   * In-app marketplace.
-  * 
+

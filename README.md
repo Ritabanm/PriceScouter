@@ -19,6 +19,6 @@ PriceScouter is a cross-platform mobile app built with react native and a whole 
 
 ## UI Screenshots :
 
-1. ![IMG_6701](https://github.com/user-attachments/assets/91e77736-7c67-4598-b7c2-d4cfc84f8427)
-2. ![IMG_6703](https://github.com/user-attachments/assets/6f806e36-b78f-4f33-9fcf-16e66f0dc459)
 
+
+![PriceScouter](https://github.com/user-attachments/assets/e9e42da0-fa8f-4e46-bf39-c8711de4a525)
